@@ -2485,17 +2485,25 @@ module RSpec::Core
         expect($VERBOSE).to eq true
       end
 
-      it "sets verbose to false when true" do
+      it "sets verbose to false when false" do
         config.warnings = false
         expect($VERBOSE).to eq false
       end
 
+      it "sets verbose to nil when nil" do
+        config.warnings = nil
+        expect($VERBOSE).to eq nil
+      end
+
       it 'returns the verbosity setting' do
-        config.warnings = true
+        config.warnings = "yes please"
         expect(config.warnings?).to eq true
 
         config.warnings = false
         expect(config.warnings?).to eq false
+
+        config.warnings = nil
+        expect(config.warnings?).to eq nil
       end
 
       it 'is loaded from config by #force' do

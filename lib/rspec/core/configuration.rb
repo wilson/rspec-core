@@ -1609,8 +1609,10 @@ module RSpec
       delegate_to_ordering_manager :seed_used?, :ordering_registry
 
       # Set Ruby warnings on or off.
+      # In modern rubies, nil, false, and true each have a distinct meaning,
+      # and can be set with the -W{0,1,2} RUBYOPT.
       def warnings=(value)
-        $VERBOSE = !!value
+        $VERBOSE = value ? true : value
       end
 
       # @return [Boolean] Whether or not ruby warnings are enabled.
